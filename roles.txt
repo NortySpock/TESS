@@ -1,0 +1,8 @@
+Toastmaster
+Jokemaster
+Speaker
+Evaluator
+Table Topic Master
+Ah Counter
+Timer
+
