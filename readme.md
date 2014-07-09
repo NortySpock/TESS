@@ -1,3 +1,3 @@
-TESS - ToastmastErs Simple Situator
+TESS - ToastmastErs Simple Scheduler
 
 
