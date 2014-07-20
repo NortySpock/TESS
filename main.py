@@ -1,11 +1,15 @@
 from random import shuffle
 from os import linesep
 
+
 list_of_people = []
 list_of_roles = []
+available_people = []
+write_lines = []
 number_of_meetings = 8
 max_role_name_length = 0
 max_person_name_length = 0
+
 
 tm_file_name = "toastmasters.txt"
 role_file_name = "roles.txt"
@@ -22,11 +26,18 @@ for line in role_file:
     list_of_roles.append(line)
 role_file.close()
 
-shuffle(list_of_people)
+
+for meeting in range(1,number_of_meetings):
+    write_lines.append("Meeting #"+str(meeting))
+    for role in list_of_roles:
+        if(len(available_people)==0):
+            shuffle(list_of_people)
+            available_people.extend(list_of_people)
+        write_lines.append(role.strip()+"\t"+available_people.pop().strip())
+    write_lines.append('')
+
 
 sug_role_file = open(suggested_roles_file_name,'w')
-sug_role_file.write("Meeting #"+str(1)+linesep)
-for role in list_of_roles:
-    sug_role_file.write(str(role.strip()+"\t"+list_of_people.pop()))
-sug_role_file.write('')
+for line in write_lines:
+    sug_role_file.write(line)
 sug_role_file.close()
