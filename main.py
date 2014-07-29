@@ -18,23 +18,25 @@ suggested_roles_file_name = "suggested_roles.txt"
 
 tm_file = open(tm_file_name, 'r')
 for line in tm_file:
-    list_of_people.append(line)
+    if(line.strip() != ''):
+        list_of_people.append(line)
 tm_file.close()
 
 role_file = open(role_file_name,'r')
 for line in role_file:
-    list_of_roles.append(line)
+    if(line.strip() != ''):
+        list_of_roles.append(line)
 role_file.close()
 
 
-for meeting in range(1,number_of_meetings):
-    write_lines.append("Meeting #"+str(meeting))
+for meeting in range(1,number_of_meetings+1):
+    write_lines.append("Meeting #"+str(meeting)+linesep)
     for role in list_of_roles:
         if(len(available_people)==0):
             shuffle(list_of_people)
             available_people.extend(list_of_people)
-        write_lines.append(role.strip()+"\t"+available_people.pop().strip())
-    write_lines.append('')
+        write_lines.append(role.strip()+"\t"+available_people.pop().strip()+linesep)
+    write_lines.append(linesep)
 
 
 sug_role_file = open(suggested_roles_file_name,'w')
