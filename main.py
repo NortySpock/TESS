@@ -43,7 +43,7 @@ for meeting in range(1,number_of_meetings+1):
         if(len(available_people)==0):
             shuffle(list_of_people)
             available_people.extend(list_of_people)
-        write_lines.append(role+(" "*(max_role_name_length-len(role)))+available_people.pop())
+        write_lines.append(role.strip()+(" "*(max_role_name_length+2-len(role)))+available_people.pop().strip()+linesep)
     write_lines.append(linesep)
 
 
