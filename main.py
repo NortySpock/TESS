@@ -6,7 +6,7 @@ list_of_people = []
 list_of_roles = []
 available_people = []
 write_lines = []
-number_of_meetings = 8
+number_of_meetings = 9
 max_role_name_length = 0
 max_person_name_length = 0
 
@@ -51,3 +51,4 @@ sug_role_file = open(suggested_roles_file_name,'w')
 for line in write_lines:
     sug_role_file.write(line)
 sug_role_file.close()
+
