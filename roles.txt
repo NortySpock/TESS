@@ -1,8 +1,14 @@
 Toastmaster
 Jokemaster
-Speaker
-Evaluator
-Table Topic Master
-Ah Counter
-Timer
+Speaker #1
+Speaker #2
 
+Table Topic Master
+General Evaluator
+Evaluator #1
+Evaluator #2
+
+Word of the Day/Grammarian
+Timer
+Ah Counter
+CL Evaluator
