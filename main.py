@@ -1,12 +1,20 @@
 from random import shuffle
 from os import linesep
 
-
+# full list of people and roles
 list_of_people = []
 list_of_roles = []
+
+# working list of people
 available_people = []
+meeting_people = []
+
+# file to be written
 write_lines = []
-number_of_meetings = 9
+
+number_of_meetings = 3
+
+#keeps track of width of people so we can pad apppropriately
 max_role_name_length = 0
 max_person_name_length = 0
 
@@ -34,16 +42,39 @@ for line in role_file:
             max_role_name_length = len(tmp_line)
 role_file.close()
 
+# if we don't have enough people we can't prevent overbooking
+if(len(list_of_roles) < len(list_of_people)):
+    prevent_overbooking = False
+else:
+    prevent_overbooking = True
+
 
 for meeting in range(1,number_of_meetings+1):
     write_lines.append("Meeting #"+str(meeting)+linesep)
     #format_line = '{:'+str(max_role_name_length)+'s}'
-    
+    meeting_people = []
+
     for role in list_of_roles:
+        #if we're out of roles
         if(len(available_people)==0):
             shuffle(list_of_people)
             available_people.extend(list_of_people)
-        write_lines.append(role.strip()+(" "*(max_role_name_length+2-len(role)))+available_people.pop().strip()+linesep)
+        proposed_member = available_people.pop()
+        #we've already assigned a member to a previous role and we care about that
+
+        while(proposed_member in meeting_people and prevent_overbooking == True):
+            safety += 1
+            shuffle(list_of_people)
+            available_people.extend(list_of_people) #this isn't a really clean way to do it, but
+            available_people.insert(0,proposed_member) #move member to back of list
+            proposed_member = available_people.pop()
+            if(safety > 1000):
+
+        meeting_people.append(proposed_member)
+
+    suggested_meeting_roles = zip(list_of_roles,meeting_people)
+    for smr in suggested_meeting_roles:
+        write_lines.append(smr[0].strip()+(" "*(max_role_name_length+2-len(smr[0])))+smr[1].strip()+linesep)
     write_lines.append(linesep)
 
 
