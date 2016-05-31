@@ -85,7 +85,7 @@ def main(argv):
           
           
           #If we've already assigned a member to a previous role and we can prevent double-booking
-          while(proposed_member in meeting_people and prevent_overbooking == True):
+          while(proposed_member in meeting_people and prevent_overbooking):
               # If we run into a case where a person was booked for two roles during a meeting
               # dump the list of people on the back of the list (to prevent infinite loops of people)
               # and bump them to the back of the newly padded list so they get recycled.
